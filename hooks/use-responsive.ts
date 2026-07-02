@@ -1,0 +1,28 @@
+import { Breakpoint } from '@/types/breakpoint';
+import { useWindowDimensions } from 'react-native';
+
+
+
+export function useResponsive() {
+    const { height, width } = useWindowDimensions();
+
+        const isTablet = width >= 768;
+        const isDesktop = width >= 1024;
+        const islandscape = width > height;
+
+        let breakpoint: Breakpoint = "phone";
+        if (isTablet) {
+            breakpoint = "tablet";
+        }
+        if (isDesktop) {
+            breakpoint = "desktop";
+        }
+    return {
+        screenWidth: width,
+        screenHeight: height,
+        isTablet,
+        isDesktop,
+        islandscape,
+        breakpoint,
+    };
+}
