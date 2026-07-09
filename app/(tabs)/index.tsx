@@ -1,16 +1,16 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { HelloWave } from '@/components/hello-wave';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useResponsive } from '@/hooks/use-responsive';
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 
 export default function HomeScreen() {
   const { isTablet, screenWidth } = useResponsive();
-
+  const router = useRouter();
 
   return (
     <ParallaxScrollView
@@ -77,6 +77,12 @@ export default function HomeScreen() {
           <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
           <ThemedText type="defaultSemiBold">app-example</ThemedText>.
         </ThemedText>
+      <ThemedView style={styles.stepContainer}>
+      <ThemedText type="subtitle">Step 4: Explore the code</ThemedText>
+      <TouchableOpacity onPress={() => router.push("/demo")}>
+        <ThemedText type="defaultSemiBold">Tap here to go to the demo screen</ThemedText>
+      </TouchableOpacity>
+      </ThemedView>
       </ThemedView>
     </ParallaxScrollView>
   );
